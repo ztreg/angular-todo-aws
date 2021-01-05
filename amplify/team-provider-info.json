@@ -10,6 +10,11 @@
       "StackName": "amplify-angulartodoaws-dev-93711",
       "StackId": "arn:aws:cloudformation:eu-west-1:555732921912:stack/amplify-angulartodoaws-dev-93711/37559700-4f31-11eb-86d6-06fb9198ab4b",
       "AmplifyAppId": "d3hkaqavslj3f7"
+    },
+    "categories": {
+      "auth": {
+        "angulartodoawsc55f3052": {}
+      }
     }
   }
 }
