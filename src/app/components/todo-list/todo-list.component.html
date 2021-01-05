@@ -1,0 +1,11 @@
+<div>
+  <h1>TODOS</h1>
+  <p *ngIf="!todos">No todos found</p>
+  <app-todo-item
+   *ngFor="let todo of todos" 
+   [todo]="todo"
+   (deleteTodo)="deleteTodo($event)"
+   >
+
+  </app-todo-item>
+</div>
