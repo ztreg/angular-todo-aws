@@ -21,7 +21,15 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todo: Todo) {
     console.log("making the delete request to service");
-    
+
+    this.todoService.deleteTodo(todo).subscribe(res => {
+      console.log(res);
+      if(!res.error) {
+        this.todos = this.todos.filter(t => t.id !== todo.id)
+      } else {
+        console.log(res.error);
+      }
+    })
   }
 
   addTodo(todo: Todo) {

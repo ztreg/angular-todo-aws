@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
@@ -15,9 +15,11 @@ export class TodoFormComponent implements OnInit {
 
   onSubmit(){
     console.log("onsubmit");
+    var uuid1 = uuidv4();
+    console.log(uuid1);
     
     const todo = {
-      id: "55342",
+      id: uuid1,
       title: this.title,
       completed: false
     };

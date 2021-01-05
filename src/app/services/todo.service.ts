@@ -27,4 +27,12 @@ export class TodoService {
   addTodo(todo: Todo):Observable<Todo> {
     return this.http.post <any> (this.URL, todo)
   }
+
+  deleteTodo(todo: Todo):Observable<any> {
+    return this.http.delete <any> (`${this.URL}/object/${todo.id}`)
+  }
+
+  toggleCompleted(todo: Todo):Observable<Todo> {
+    return this.http.put <Todo> (`${this.URL}`, todo)
+  }
 }

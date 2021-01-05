@@ -1,6 +1,9 @@
 <div>
   <p>
-    <input type="checkbox" (change)="onToggle(todo)">
+    <input type="checkbox" (change)="onToggle(todo)" *ngIf="todo.completed; else unchecked"  checked="true">
+    <ng-template #unchecked>
+      <input type="checkbox" (change)="onToggle(todo)">
+    </ng-template>
       {{todo.title}}
     <button class="del" (click)="onDelete(todo)" >X</button>
   </p>
