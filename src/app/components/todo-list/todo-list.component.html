@@ -1,6 +1,7 @@
 <div>
   <h1>TODOS</h1>
   <p *ngIf="!todos">No todos found</p>
+  <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
   <app-todo-item
    *ngFor="let todo of todos" 
    [todo]="todo"

@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/todos",
+            "lambdaFunction": "addTodo",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/todos"
+        }
+    ],
+    "resourceName": "todorest",
+    "apiName": "todorest",
+    "functionArns": [
+        {
+            "lambdaFunction": "addTodo"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-angulartodoaws-dev-93711-authRole",
+        "unAuthRoleName": "amplify-angulartodoaws-dev-93711-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "addTodo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
