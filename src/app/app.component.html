@@ -1,15 +1,13 @@
 <body>
   <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
-  <div *ngIf="authState === 'signedin' && user">
+  
+
     <amplify-sign-out></amplify-sign-out>
     <app-header></app-header>
     <div>
       <h1>Welcome to the best todos</h1>
       
-      <app-todo-list></app-todo-list>
+      <app-todo-list *ngIf="authState === 'signedin' && user"></app-todo-list>
     </div>
     <app-footer></app-footer>
-  </div>
-
-
 </body>

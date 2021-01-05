@@ -1,5 +1,4 @@
 <div>
-  <p *ngIf="todo">yes</p>
   <p>
     <input type="checkbox" (change)="onToggle(todo)" *ngIf="todo.completed; else unchecked"  checked="true">
     <ng-template #unchecked>

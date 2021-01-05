@@ -2,13 +2,15 @@
   
   <h1>TODOS</h1>
   <p *ngIf="!todos">No todos found</p>
-  <p *ngIf="todos">we have todos</p>
   <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
-  <app-todo-item
-   *ngFor="let todo of todos" 
-   [todo]="todo"
-   (deleteTodo)="deleteTodo($event)"
-   >
+  <div *ngIf="todos">
+    <app-todo-item
+    *ngFor="let todo of todos" 
+    [todo]="todo"
+    (deleteTodo)="deleteTodo($event)"
+    >
+ 
+   </app-todo-item>
+  </div>
 
-  </app-todo-item>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -8,14 +8,14 @@ import { TodoService } from 'src/app/services/todo.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todos:Todo[];
-  constructor(private todoService: TodoService) { }
+  todos:Todo[]
+  constructor(private todoService: TodoService, private changeDetect: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.todoService.getTodos().subscribe(todos => {
-      
+      console.log(todos);
       this.todos = todos;
-      console.log(this.todos);
+      this.changeDetect.detectChanges()
     });
   }
 
@@ -26,6 +26,7 @@ export class TodoListComponent implements OnInit {
       console.log(res);
       if(!res.error) {
         this.todos = this.todos.filter(t => t.id !== todo.id)
+        this.changeDetect.detectChanges()
       } else {
         console.log(res.error);
       }
@@ -38,6 +39,7 @@ export class TodoListComponent implements OnInit {
     this.todoService.addTodo(todo).subscribe(res => {
       console.log(res);
       this.todos.push(todo)
+      this.changeDetect.detectChanges()
     })
   }
 

@@ -5,9 +5,7 @@ import { Todo } from '../models/Todo';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Constent-Type' : 'application/json',
-    // "Access-Control-Allow-Origin": "*",
-    "Access-Control-Request-Headers": "*"
+    "x-api-key": "key here guis"
   })
 }
 
@@ -21,7 +19,7 @@ export class TodoService {
   constructor(private http: HttpClient) { }
 
   getTodos():Observable<Todo[]> {
-    return this.http.get <Todo[]> (this.URL) 
+    return this.http.get <Todo[]> (this.URL, httpOptions) 
   }
 
   addTodo(todo: Todo):Observable<Todo> {

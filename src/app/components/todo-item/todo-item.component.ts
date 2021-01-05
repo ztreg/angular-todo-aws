@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
 import { TodoService } from 'src/app/services/todo.service';
 
@@ -11,7 +11,7 @@ export class TodoItemComponent implements OnInit {
   @Input() todo: Todo;
   @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter();
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private changeDetect: ChangeDetectorRef) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +22,7 @@ export class TodoItemComponent implements OnInit {
     todo.completed = !todo.completed
     this.todoService.toggleCompleted(todo).subscribe(res => {
       console.log(res);
-      
+      this.changeDetect.detectChanges()
     })
     
   }
