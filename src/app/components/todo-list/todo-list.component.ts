@@ -11,18 +11,18 @@ export class TodoListComponent implements OnInit {
   todos:Todo[]
   constructor(private todoService: TodoService, private changeDetect: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-    this.todoService.getTodos().subscribe(todos => {
+  async ngOnInit(): Promise<void> {
+    (await this.todoService.getTodos()).subscribe(todos => {
       console.log(todos);
       this.todos = todos;
       this.changeDetect.detectChanges()
     });
   }
 
-  deleteTodo(todo: Todo) {
+  async deleteTodo(todo: Todo) {
     console.log("making the delete request to service");
 
-    this.todoService.deleteTodo(todo).subscribe(res => {
+    (await this.todoService.deleteTodo(todo)).subscribe(res => {
       console.log(res);
       if(!res.error) {
         this.todos = this.todos.filter(t => t.id !== todo.id)
@@ -33,10 +33,10 @@ export class TodoListComponent implements OnInit {
     })
   }
 
-  addTodo(todo: Todo) {
+  async addTodo(todo: Todo) {
     console.log("yes");
     
-    this.todoService.addTodo(todo).subscribe(res => {
+    (await this.todoService.addTodo(todo)).subscribe(res => {
       console.log(res);
       this.todos.push(todo)
       this.changeDetect.detectChanges()

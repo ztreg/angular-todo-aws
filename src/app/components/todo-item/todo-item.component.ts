@@ -16,11 +16,12 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onToggle(todo: Todo) {
+  async onToggle(todo: Todo) {
 
     console.log("toggling todo to service");
-    todo.completed = !todo.completed
-    this.todoService.toggleCompleted(todo).subscribe(res => {
+    todo.completed = !todo.completed;
+
+    (await this.todoService.toggleCompleted(todo)).subscribe(res => {
       console.log(res);
       this.changeDetect.detectChanges()
     })

@@ -1,59 +1,52 @@
-import { Injectable, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Todo } from '../models/Todo';
 import { Auth } from 'aws-amplify';
-
 @Injectable({
   providedIn: 'root'
 })
 
-export class TodoService implements OnInit{
+export class TodoService {
   URL: string = "https://ajy3tsqb2d.execute-api.eu-west-1.amazonaws.com/dev/todos"
   constructor(private http: HttpClient) { }
 
   token: string;
-  httpOptions: object;
+  httpOptions: object
 
-
-  ngOnInit(): void {
-
-  }
-
-  checkToken(): void {
-    Auth.currentSession().then(res=>{
+  async checkToken(): Promise<void> {
+    await Auth.currentSession().then(res => {
       let idToken = res.getIdToken()
       this.token = idToken.getJwtToken()
-      console.log('idToken:', this.token );
-      this.httpOptions = {
-        headers: new HttpHeaders({
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-          Authorization: this.token
-        })
+    });
+  }
+
+  setHttpHeaders(): object {
+    return {
+      headers: {
+        "Authorization": this.token
       }
-    })
+    }
   }
 
-  getTodos():Observable<Todo[]> {
-    this.checkToken()
-    console.log(this.httpOptions);
-    
-    return this.http.get <Todo[]> (this.URL, this.httpOptions) 
+
+  async getTodos(): Promise<Observable<Todo[]>> {
+    await this.checkToken();
+    return this.http.get<Todo[]>( this.URL, this.setHttpHeaders() )
   }
 
-  addTodo(todo: Todo):Observable<Todo> {
-    this.checkToken()
-    return this.http.post <any> (this.URL, todo, this.httpOptions)
+  async addTodo(todo: Todo): Promise<Observable<Todo>> {
+    await this.checkToken();
+    return this.http.post<any>(this.URL, todo, this.setHttpHeaders())
   }
 
-  deleteTodo(todo: Todo):Observable<any> {
-    this.checkToken()
-    return this.http.delete <any> (`${this.URL}/object/${todo.id}`, this.httpOptions)
+  async deleteTodo(todo: Todo): Promise<Observable<any>> {
+    await this.checkToken();
+    return this.http.delete<any>(`${this.URL}/object/${todo.id}`, this.setHttpHeaders())
   }
 
-  toggleCompleted(todo: Todo):Observable<Todo> {
-    this.checkToken()
-    return this.http.put <Todo> (`${this.URL}`, todo, this.httpOptions)
+  async toggleCompleted(todo: Todo): Promise<Observable<Todo>> {
+    await this.checkToken();
+    return this.http.put<Todo>(`${this.URL}`, todo, this.setHttpHeaders())
   }
 }
