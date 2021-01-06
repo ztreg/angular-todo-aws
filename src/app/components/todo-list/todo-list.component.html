@@ -1,16 +1,22 @@
 <div>
   
   <h1>TODOS</h1>
-  <p *ngIf="!todos">No todos found</p>
+  <p *ngIf="!todos">No todos found from api</p>
   <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
-  <div *ngIf="todos">
-    <app-todo-item
-    *ngFor="let todo of todos" 
-    [todo]="todo"
-    (deleteTodo)="deleteTodo($event)"
-    >
- 
-   </app-todo-item>
+  <div *ngIf="todos" class="w3-container">
+    <table class="w3-table-all">
+      <thead>
+        <tr class="w3-red">
+          <th>Status</th>
+          <th>Title</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let todo of todos">
+        <td>hm</td>
+        <td><app-todo-item  [todo]="todo" (deleteTodo)="deleteTodo($event)"></app-todo-item></td>
+        
+      </tr>
+    </table>
   </div>
-
 </div>
