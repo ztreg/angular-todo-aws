@@ -1,4 +1,4 @@
-<body>
+<div class="page-container">
   <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
     <app-header></app-header>
     <div>
@@ -7,4 +7,6 @@
       <app-todo-list *ngIf="authState === 'signedin' && user"></app-todo-list>
     </div>
     <app-footer></app-footer>
-</body>
+</div>
+
+

@@ -1,13 +1,18 @@
 <td>
-  <input
-    type="checkbox"
-    (change)="onToggle(todo)"
-    *ngIf="todo.completed; else unchecked"
-    checked="true"
-  />
+  <input  type="checkbox" (change)="onToggle(todo)" *ngIf="todo.completed; else unchecked" checked="true" />
   <ng-template #unchecked>
     <input type="checkbox" (change)="onToggle(todo)" />
   </ng-template>
-  {{ todo.title }}
-  <button class="del" (click)="onDelete(todo)"> X</button>
 </td>
+<td *ngIf="todo.completed; else unchecky" class="checky" >
+  {{ todo.title }}
+</td>
+<ng-template #unchecky>
+  <td>
+    {{ todo.title }}
+  </td>
+</ng-template>
+<td>
+  <button class="del" (click)="onDelete(todo)">Delete</button>
+</td>
+

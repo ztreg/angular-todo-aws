@@ -1,9 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
   text-align: center;
   background-color: black;
   color: beige;
+
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  height: 100% !important;
 }
 
 .header {

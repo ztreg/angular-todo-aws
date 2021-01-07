@@ -1,10 +1,23 @@
-// .todo-list {
-//     width: 100%;
-//     display: grid;
-//     grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
-//     // grid-gap: 20px;
-// }
-td {
-  color: black !important;
+td, tr {
+  color: white !important;
   // font-size: 1.3em;
+}
+
+.pelle {
+  th {
+    background-color: rgb(44, 44, 44);
+    color: white;
+  }
+}
+
+.scroll {
+  max-height: 500px !important;
+  overflow-y: auto;
+}
+
+.tablebody {
+  tbody, tr, td  {
+    background-color: rgb(92, 88, 88);
+    color: white;
+  }
 }

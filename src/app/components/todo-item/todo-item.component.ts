@@ -3,7 +3,7 @@ import { Todo } from 'src/app/models/Todo';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
-  selector: 'app-todo-item',
+  selector: '[my-todo-item]',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.scss']
 })
@@ -17,7 +17,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   async onToggle(todo: Todo) {
-
+    
     console.log("toggling todo to service");
     todo.completed = !todo.completed;
 
